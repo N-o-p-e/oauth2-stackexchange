@@ -2,7 +2,6 @@
 
 namespace AlexMasterov\OAuth2\Client\Provider;
 
-use AlexMasterov\OAuth2\Client\Provider\StackExchangeException;
 use League\OAuth2\Client\{
     Provider\AbstractProvider,
     Token\AccessToken,
@@ -94,29 +93,6 @@ class StackExchange extends AbstractProvider
     protected function getDefaultScopes()
     {
         return [];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getAuthorizationParameters(array $options)
-    {
-        $options['response_type'] = 'code';
-        $options['client_id'] = $this->clientId;
-
-        if (empty($options['state'])) {
-            $options['state'] = $this->state;
-        }
-
-        if (empty($options['scope'])) {
-            $options['scope'] = $this->scope;
-        }
-
-        if (empty($options['redirect_uri'])) {
-            $options['redirect_uri'] = $this->redirectUri;
-        }
-
-        return $options;
     }
 
     /**
